@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 
 export const FotoCard = () => (
-	<div className="card mb-3" >
+	<div className="card mb-3" id="Cards1" >
   <div className="row g-0">
     <div className="col-md-4">
-      <img src="https://img.freepik.com/vector-premium/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" className="img-fluid rounded-start" alt="..."/>
+      <img src="https://loremflickr.com/500/400/person" className="img-fluid rounded-start" alt="..."/>
     </div>
-    <div className="col-md-8">
+    <div className="col-md-8 ml-6">
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <div class="position-absolute top-0 start-100 translate-middle"><i className="d-flex fas fa-trash"></i></div>
-        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+        <h3 className="card-title">Jose Perez</h3>
+        <p> <i class="fas fa-map-marker-alt"></i> 17th Street Aevenue, Old Town road</p>
+        <p className="card-text"> <i class="fas fa-phone"></i> +1 155 671 657654</p>
+        <p><i class="far fa-envelope"></i> JoseRamon@gmail.com</p>
+        <div id="botones1" className="position-relative"> <button><i className="fas fa-pencil-alt"></i></button> <button> <i className="fas fa-trash"></i></button></div>
+        <p className="card-text"><small className="text-muted"></small></p>
       </div>
     </div>
   </div>
