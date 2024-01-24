@@ -9,5 +9,8 @@
     },
     "githubPullRequests.ignoredPullRequestBranches": [
         "master"
-    ]
+    ],
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 }

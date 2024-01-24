@@ -1,18 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			demo: [],
+			usuarios: [],
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,6 +28,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			crearUsuario: (name,email,phone,address) => {
+				const store = getStore();
+				let nuevoUsuario = {
+					name: name,
+					email: email,
+					phone: phone,
+					address: address, 
+				}
+
+				let nuevaListaUsuarios = 
+					store.usuarios.concat([nuevoUsuario])
+			
+					setStore({ usuarios: nuevaListaUsuarios });
 			}
 		}
 	};
