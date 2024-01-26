@@ -7,6 +7,10 @@ export const FotoCard = () => {
 
   const { store, actions } = useContext(Context);
 
+  const usuarios = store.usuarios
+
+  console.log(usuarios)
+
   return (
     <div className="card mb-3" id="Cards1" >
       <div className="row g-0">
@@ -17,15 +21,15 @@ export const FotoCard = () => {
           <div className="card-body">
             <ul>
               {store.usuarios.map(u => (
-                <li> <strong> Nombre: {u.name} </strong> </li>,
-                <li> Email: {u.email} </li>,
-                <li> Phone: {u.phone} </li>,
-                <li> Address: {u.address} </li>
+                <li key={u.name} >
+                  <div> Nombre: {u.name} </div>
+                  <div> Email: {u.email} </div>
+                  <div> Phone: {u.phone} </div>
+                  <div> Address: {u.address} </div>
+                </li>
               ))}
-              
             </ul>
             <div id="botones1" className="position-relative"> <button><i className="fas fa-pencil-alt"></i></button> <button> <i className="fas fa-trash"></i></button></div>
-            <p className="card-text"><small className="text-muted"></small></p>
           </div>
         </div>
       </div>

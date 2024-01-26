@@ -15,11 +15,17 @@ export const Contactos = () => {
         <div className="container">
 
             
-            <FotoCard />
-            <FotoCard />
-            <FotoCard />
-            <FotoCard />
-            <FotoCard />
+                {store.usuarios.map(u => (
+                    <li key={u.name} >
+                        <FotoCard key={u.name} />
+                    </li>
+                   
+                    
+
+                ))}
+
+           
+
 
         </div>
     );
