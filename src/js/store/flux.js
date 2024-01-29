@@ -1,9 +1,10 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [],
+			contacto: [],
 			usuarios: [],
-			
+			contactos: []
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -29,20 +30,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			crearUsuario: (name,email,phone,address) => {
+			crearUsuario: (name, email, phone, address) => {
 				const store = getStore();
 				let nuevoUsuario = {
 					name: name,
 					email: email,
 					phone: phone,
-					address: address, 
+					address: address,
 				}
+				
 
-				let nuevaListaUsuarios = 
-					store.usuarios.concat([nuevoUsuario])
-			
-					setStore({ usuarios: nuevaListaUsuarios });
+				let nuevaListaUsuarios = [...store.usuarios, nuevoUsuario]
+
+				setStore({ usuarios: nuevaListaUsuarios });
+			},
+
+			loadContacts: () => {
+				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/carlosR')
+
+					.then((response) => response.json()
+					)
+					.then((response) => { 
+						
+						console.log (response)
+						
+						setStore({ contactos: response }) })
+
+					.catch(error => console.log(error))
+
 			}
+
+
 		}
 	};
 };

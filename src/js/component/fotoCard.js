@@ -3,13 +3,9 @@ import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
-export const FotoCard = () => {
+export const FotoCard = ({ contact }) => {
 
   const { store, actions } = useContext(Context);
-
-  const usuarios = store.usuarios
-
-  console.log(usuarios)
 
   return (
     <div className="card mb-3" id="Cards1" >
@@ -19,16 +15,19 @@ export const FotoCard = () => {
         </div>
         <div className="col-md-8 ml-6">
           <div className="card-body">
-            <ul>
-              {store.usuarios.map(u => (
-                <li key={u.name} >
-                  <div> Nombre: {u.name} </div>
-                  <div> Email: {u.email} </div>
-                  <div> Phone: {u.phone} </div>
-                  <div> Address: {u.address} </div>
-                </li>
-              ))}
-            </ul>
+          <div className="name fs-3"><strong>{contact.full_name}</strong></div>
+                    <div className="address">
+                        <i className="fas fa-map-marker-alt p-2" />
+                        {contact.address}
+                    </div>
+                    <div className="phone">
+                        <i className="fas fa-phone p-2" />
+                        {contact.phone}
+                    </div>
+                    <div className="email">
+                        <i className="fas fa-envelope p-2" />
+                        {contact.email}
+                    </div>
             <div id="botones1" className="position-relative"> <button><i className="fas fa-pencil-alt"></i></button> <button> <i className="fas fa-trash"></i></button></div>
           </div>
         </div>
