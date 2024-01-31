@@ -8,6 +8,7 @@ import { Contacto } from "./views/contactos";
 import { Formulario } from "./views/formulario";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
+import { editarContacto } from "./views/editContact";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -27,6 +28,7 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/contactos" element={<Contacto />} />
 						<Route path="/formulario" element={<Formulario />} />
+						<Route path="/editContact" element={<editarContacto />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>

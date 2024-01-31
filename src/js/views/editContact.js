@@ -1,27 +1,31 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-export const Formulario = () => {
+
+
+export const editarContacto = () => {
     const { actions, store } = useContext(Context);
-    const [contactInfo, setContactInfo] = useState({
+    const [editcontactInfo, seteditcontactInfo] = useState({
         full_name: "",
         email: "",
         agenda_slug: "carlosR",
         address: "",
         phone: ""
     });
+
     useEffect(() => {
         // Add any initialization logic if needed
     }, []);
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setContactInfo({ ...contactInfo, [name]: value });
+        seteditcontactInfo({ ...contactInfo, [name]: value });
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        actions.crearUsuario(contactInfo);
+        actions.editarContacto(editcontactInfo);
         // Redirect to the desired page after submission if needed
     };
+
     return (
         <div className="p-3 container">
             <form onSubmit={handleSubmit}>
@@ -68,16 +72,7 @@ export const Formulario = () => {
                 />
                 <div>
                     <button className="btn btn-info btn-lg mt-3" type="submit">Save</button>
-                    <Link to="/contactos" className="btn btn-secondary btn-lg mt-3 ms-4">Take me to contacts</Link>
                 </div>
             </form>
         </div>
-    );
-};
-
-
-
-
-
-
-
+    )}

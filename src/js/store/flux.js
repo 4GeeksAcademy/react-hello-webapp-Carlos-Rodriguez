@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			contacto: [],
 			usuarios: [],
-			contactos: []
+			contactos: [],
+			contact:{}
 
 		},
 		actions: {
@@ -30,39 +31,63 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			crearUsuario: (name, email, phone, address) => {
-				const store = getStore();
-				let nuevoUsuario = {
-					name: name,
-					email: email,
-					phone: phone,
-					address: address,
+			
+		loadContacts: () => {
+			fetch('https://playground.4geeks.com/apis/fake/contact/agenda/carlosR')
+
+				.then((response) => response.json()
+				)
+				.then((response) => {
+
+					console.log(response)
+
+					setStore({ contactos: response })
+				})
+
+				.catch(error => console.log(error))
+
+		},
+
+		crearUsuario: async (contactInfo) => {
+			try {
+			  const response = await fetch(
+				"https://playground.4geeks.com/apis/fake/contact/",
+				{
+				  method: "POST",
+				  headers: {
+					"Content-Type": "application/json",
+				  },
+				  body: JSON.stringify(contactInfo),
 				}
-				
-
-				let nuevaListaUsuarios = [...store.usuarios, nuevoUsuario]
-
-				setStore({ usuarios: nuevaListaUsuarios });
-			},
-
-			loadContacts: () => {
-				fetch('https://playground.4geeks.com/apis/fake/contact/agenda/carlosR')
-
-					.then((response) => response.json()
-					)
-					.then((response) => { 
-						
-						console.log (response)
-						
-						setStore({ contactos: response }) })
-
-					.catch(error => console.log(error))
-
+			  );
+			  const contact= await response.json();
+			  getActions().loadContacts()
+			} catch (error) {
+			  console.error("Error creating contact:", error);
 			}
+		  },
 
+		  editarUsuario: async (editcontactInfo) => {
+			try {
+			  const response = await fetch(
+				"https://playground.4geeks.com/apis/fake/contact/id",
+				{
+				  method: "PUT",
+				  headers: {
+					"Content-Type": "application/json",
+				  },
+				  body: JSON.stringify(editcontactInfo),
+				}
+			  );
+			  const contact= await response.json();
+			  getActions().loadContacts()
+			} catch (error) {
+			  console.error("Error creating contact:", error);
+			}
+		  },
 
-		}
-	};
+	}
+};
 };
 
 export default getState;

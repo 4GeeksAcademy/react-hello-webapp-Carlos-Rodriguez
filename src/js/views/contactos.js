@@ -7,6 +7,11 @@ import { Context } from "../store/appContext";
 export const Contacto = () => {
     const { store, actions } = useContext(Context);
 
+    useEffect(() => {
+        actions.loadContacts()
+    },[])
+
+    
     return (
         <div className="container">
             <h1>Cantidad de contactos: {store.contactos.length}</h1>

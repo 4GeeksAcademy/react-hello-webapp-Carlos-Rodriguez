@@ -7,6 +7,10 @@ export const FotoCard = ({ contact }) => {
 
   const { store, actions } = useContext(Context);
 
+  function editar() {
+    <Link> to="/editContact" </Link>
+  }
+
   return (
     <div className="card mb-3" id="Cards1" >
       <div className="row g-0">
@@ -28,7 +32,7 @@ export const FotoCard = ({ contact }) => {
                         <i className="fas fa-envelope p-2" />
                         {contact.email}
                     </div>
-            <div id="botones1" className="position-relative"> <button><i className="fas fa-pencil-alt"></i></button> <button> <i className="fas fa-trash"></i></button></div>
+            <div id="botones1" className="position-relative"> <button> <i onClick={editar()} className="fas fa-pencil-alt"></i></button> <button> <i className="fas fa-trash"></i></button></div>
           </div>
         </div>
       </div>
