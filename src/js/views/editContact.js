@@ -1,10 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
+import { func } from "prop-types";
 
 
-export const editarContacto = () => {
+export const EditarContacto = () => {
     const { actions, store } = useContext(Context);
+    const navigate = useNavigate()
+    const params = useParams();
     const [editcontactInfo, seteditcontactInfo] = useState({
         full_name: "",
         email: "",
@@ -14,15 +18,20 @@ export const editarContacto = () => {
     });
 
     useEffect(() => {
-        // Add any initialization logic if needed
+      let contacto =  store.contactos.find(c => c.id == params.id)
+      seteditcontactInfo(contacto)
+      
     }, []);
     const handleChange = (e) => {
         const { name, value } = e.target;
-        seteditcontactInfo({ ...contactInfo, [name]: value });
+        seteditcontactInfo({ ...editcontactInfo, [name]: value });
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        actions.editarContacto(editcontactInfo);
+        function volveraContactos(){
+            navigate('/contactos')
+        }
+        actions.editarUsuario(editcontactInfo, volveraContactos);
         // Redirect to the desired page after submission if needed
     };
 
@@ -36,7 +45,7 @@ export const editarContacto = () => {
                     id="full_name"
                     type="text"
                     name="full_name"
-                    value={contactInfo.full_name}
+                    defaultValue={editcontactInfo.full_name}
                     onChange={handleChange}
                     required
                 />
@@ -46,7 +55,7 @@ export const editarContacto = () => {
                     id="email"
                     type="email"
                     name="email"
-                    value={contactInfo.email}
+                    defaultValue={editcontactInfo.email}
                     onChange={handleChange}
                     required
                 />
@@ -56,7 +65,7 @@ export const editarContacto = () => {
                     id="address"
                     type="text"
                     name="address"
-                    value={contactInfo.address}
+                    defaultValue={editcontactInfo.address}
                     onChange={handleChange}
                     required
                 />
@@ -66,12 +75,13 @@ export const editarContacto = () => {
                     id="phone"
                     type="tel"
                     name="phone"
-                    value={contactInfo.phone}
+                    defaultValue={editcontactInfo.phone}
                     onChange={handleChange}
                     required
                 />
                 <div>
                     <button className="btn btn-info btn-lg mt-3" type="submit">Save</button>
+                    
                 </div>
             </form>
         </div>

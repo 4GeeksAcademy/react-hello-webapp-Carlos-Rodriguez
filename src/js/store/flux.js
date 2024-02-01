@@ -67,16 +67,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 		  },
 
-		  editarUsuario: async (editcontactInfo) => {
+		  editarUsuario: async (editcontactInfo,volveraContactos) => {
 			try {
 			  const response = await fetch(
-				"https://playground.4geeks.com/apis/fake/contact/id",
+				`https://playground.4geeks.com/apis/fake/contact/${editcontactInfo.id}`,
 				{
 				  method: "PUT",
 				  headers: {
 					"Content-Type": "application/json",
 				  },
 				  body: JSON.stringify(editcontactInfo),
+				}
+			  );
+			  const contact= await response.json();
+			  getActions().loadContacts()
+			  volveraContactos()
+			} catch (error) {
+			  console.error("Error creating contact:", error);
+			}
+		  },
+
+		  eliminarUsuario: async (id) => {
+			try {
+			  const response = await fetch(
+				`https://playground.4geeks.com/apis/fake/contact/${id}`,
+				{
+				  method: "DELETE",
+				  headers: {
+					"Content-Type": "application/json",
+				  },
 				}
 			  );
 			  const contact= await response.json();
